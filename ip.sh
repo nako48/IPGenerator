@@ -35,7 +35,7 @@ cat << "EOF"
         "-._,)--._,)
 EOF
 echo ""
-read -p "Limit : " limit
+read -p "Mau Berapa IP ? : " limit
 for(( i=1; $i <=$limit; i++ )); do 
 	echo $((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256))>>hasil.txt
 done
