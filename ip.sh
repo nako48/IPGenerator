@@ -65,7 +65,6 @@ port80(){
 	fi
 }
 port443(){
-	port80 $1
 	checkip=$(curl -skL --connect-timeout 15 --max-time 15 "https://portchecker.co/" \
 	-H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0' \
 	-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
@@ -85,7 +84,16 @@ port443(){
 		printf "${labelmerah}-- DEAD --${normal} ${bold} ${1}:443\n"
 	fi
 }
-
+http(){
+	port80 $1 && port443 $1
+	ngecurl=$(curl -s -k -I --compressed --connect-timeout 30 --max-time 30 "$1" -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: id,en-US;q=0.7,en;q=0.3' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'TE: Trailers')
+	if [[ $ngecurl =~ "200 OK" ]]; then
+		printf "${labelijo}-- LIVE --${normal} ${bold} ${1}\n"
+		echo "$1">> iplive.txt
+	else
+		printf "${labelmerah}-- DEAD --${normal} ${bold} ${1}\n"
+	fi
+}
 IFS=$'\r\n' GLOBIGNORE='*' command eval 'bacot=($(cat ips.txt))'
 waktumulai=$(date +%s)
 for (( i = 0; i <"${#bacot[@]}"; i++ )); do
@@ -93,6 +101,6 @@ for (( i = 0; i <"${#bacot[@]}"; i++ )); do
 	IFS='' read -r -a array <<< "$WOW"
 	ipx=${array[0]}
 	((cthread=cthread%250)); ((cthread++==0)) && wait
-	port443 ${ipx} &
+	http ${ipx} &
 done
 wait
