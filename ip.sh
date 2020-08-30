@@ -85,7 +85,7 @@ for (( i = 0; i <"${#bacot[@]}"; i++ )); do
 	WOW="${bacot[$i]}"
 	IFS='' read -r -a array <<< "$WOW"
 	ipx=${array[0]}
-	((cthread=cthread%100)); ((cthread++==0)) && wait
+	((cthread=cthread%50)); ((cthread++==0)) && wait
 	port443 ${ipx} &
 done
 wait
