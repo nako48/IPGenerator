@@ -88,6 +88,6 @@ for (( i = 0; i <"${#bacot[@]}"; i++ )); do
 done
 wait
 sort result.txt | uniq >> iplive.txt
-filter_total=$(cat hasil.txt | wc -l)
+filter_total=$(cat iplive.txt | wc -l)
 printf "Done Filter => $filter_total"
 rm -rf result.txt
