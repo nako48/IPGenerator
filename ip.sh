@@ -56,7 +56,7 @@ port80(){
 	-H 'Referer: https://networkappers.com/tools/open-port-checker')
 	if [[ $checkip =~ "open" ]]; then
 		printf "${labelijo}-- LIVE --${normal} ${bold} ${1}:80\n"
-		echo "$1">> iplive.txt
+		echo "$1">> result.txt
 	else
 		printf "${labelmerah}-- DEAD --${normal} ${bold} ${1}\n"
 	fi
@@ -72,7 +72,7 @@ port443(){
 	-H 'Referer: https://networkappers.com/tools/open-port-checker')
 	if [[ $checkip =~ "open" ]]; then
 		printf "${labelijo}-- LIVE --${normal} ${bold} ${1}:443\n"
-		echo "$1">> iplive.txt
+		echo "$1">> result.txt
 	else
 		printf "${labelmerah}-- DEAD --${normal} ${bold} ${1}\n"
 	fi
@@ -87,3 +87,7 @@ for (( i = 0; i <"${#bacot[@]}"; i++ )); do
 	port443 ${ipx} &
 done
 wait
+sort result.txt | uniq >> iplive.txt
+filter_total=$(cat hasil.txt | wc -l)
+printf "Done Filter => $filter_total"
+rm -rf result.txt
