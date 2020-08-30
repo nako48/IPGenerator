@@ -1,18 +1,18 @@
 #!/bin/bash
 color(){
-	merah='\e[91m'
-	cyan='\e[96m'
-	kuning='\e[93m'
-	oren='\033[0;33m' 
-	margenta='\e[95m'
-	biru='\e[94m'
-	ijo="\e[92m"
-	putih="\e[97m"
-	normal='\033[0m'
-	bold='\e[1m'
-	labelmerah='\e[41m'
-	labelijo='\e[42m'
-	labelkuning='\e[43m'    
+merah='\e[91m'
+cyan='\e[96m'
+kuning='\e[93m'
+oren='\033[0;33m' 
+margenta='\e[95m'
+biru='\e[94m'
+ijo="\e[92m"
+putih="\e[97m"
+normal='\033[0m'
+bold='\e[1m'
+labelmerah='\e[41m'
+labelijo='\e[42m'
+labelkuning='\e[43m'    
 }
 cat << "EOF"
                       .".
@@ -39,12 +39,10 @@ read -p "Mau Berapa IP ? : " limit
 looping=1
 while [ $looping -le $limit ]
 do
-	echo $((RANDOM%255)).$((RANDOM%255)).$((RANDOM%255)).$((RANDOM%255))>>hasil.txt
-	echo $((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256))>>hasil.txt
+	echo $((RANDOM%255)).$((RANDOM%255)).$((RANDOM%255)).$((RANDOM%255))>>ips.txt
+	echo $((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256))>>ips.txt
 	((looping++))
 done
-sort hasil.txt | uniq >> ips.txt
-rm -rf hasil.txt
 port80(){
 	color
 	# port=('80')
