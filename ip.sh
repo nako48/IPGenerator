@@ -69,7 +69,7 @@ port443(){
 	-H 'Accept-Language: id,en-US;q=0.7,en;q=0.3' \
 	-H 'Connection: keep-alive' \
 	-H 'Upgrade-Insecure-Requests: 1' )
-	if [[ $checkip =~ "http OPEN" ]]; then
+	if [[ $checkip =~ "https OPEN" ]]; then
 		printf "${labelijo}-- LIVE --${normal} ${bold} ${1}:80\n"
 		echo "$1">> result.txt
 	elif [[ $checkip =~ "BAD" ]]; then
