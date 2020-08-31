@@ -1,18 +1,18 @@
 #!/bin/bash
 color(){
-	merah='\e[91m'
-	cyan='\e[96m'
-	kuning='\e[93m'
-	oren='\033[0;33m' 
-	margenta='\e[95m'
-	biru='\e[94m'
-	ijo="\e[92m"
-	putih="\e[97m"
-	normal='\033[0m'
-	bold='\e[1m'
-	labelmerah='\e[41m'
-	labelijo='\e[42m'
-	labelkuning='\e[43m'    
+merah='\e[91m'
+cyan='\e[96m'
+kuning='\e[93m'
+oren='\033[0;33m' 
+margenta='\e[95m'
+biru='\e[94m'
+ijo="\e[92m"
+putih="\e[97m"
+normal='\033[0m'
+bold='\e[1m'
+labelmerah='\e[41m'
+labelijo='\e[42m'
+labelkuning='\e[43m'    
 }
 cat << "EOF"
                       .".
